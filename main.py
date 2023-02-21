@@ -15,7 +15,7 @@ class DropBoxUpload:
         dbx = dropbox.Dropbox(self.token, timeout=self.timeout)
         file_size = os.path.getsize(file_path)
         CHUNK_SIZE = self.chunk * 1024 * 1024
-        dest_path = upload_path + '/' + os.path.basename(file_path)
+        dest_path = os.path.join(upload_path, os.path.basename(file_path))
         since = time.time()
         with open(file_path, 'rb') as f:
             uploaded_size = 0
@@ -69,15 +69,15 @@ if __name__ == '__main__':
     dropbox_path = os.path.join("/", args.tgt)
     local_path = args.src
 
-    if os.path.isfile(args.src):
+    if os.path.isfile(local_path):
         uploader.UpLoadFile(os.path.join("/", args.tgt), args.src)
-    elif os.path.isdir(args.src):
+    elif os.path.isdir(local_path):
         local_base_dir = os.path.basename(os.path.normpath(local_path))
-        for root, dirs, files in os.walk(args.src):
+        for root, dirs, files in os.walk(local_path):
             for file in files:
                 local_file_path = os.path.join(root, file)
                 local_relative_path = os.path.relpath(local_file_path, local_path)
-                dropbox_file_path = os.path.join(dropbox_path, local_base_dir, local_relative_path)
-                uploader.UpLoadFile(dropbox_file_path, local_file_path)
+                dropbox_file_path = os.path.join(dropbox_path, local_base_dir, os.path.dirname(local_relative_path))
+                uploader.UpLoadFile(dropbox_file_path, os.path.basename(local_relative_path))
     else:
         print("Invalid file path")
