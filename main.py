@@ -78,6 +78,6 @@ if __name__ == '__main__':
                 local_file_path = os.path.join(root, file)
                 local_relative_path = os.path.relpath(local_file_path, local_path)
                 dropbox_file_path = os.path.join(dropbox_path, local_base_dir, os.path.dirname(local_relative_path))
-                uploader.UpLoadFile(dropbox_file_path, os.path.basename(local_relative_path))
+                uploader.UpLoadFile(dropbox_file_path, local_file_path)
     else:
         print("Invalid file path")
