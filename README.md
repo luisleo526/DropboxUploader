@@ -17,12 +17,12 @@ optional arguments:
 
 ### Upload a single file
 
-`python main..py --src YOUR_FILE_PATH --tgt YOUR_DROPBOX_PATH`
+`python main.py --src YOUR_FILE_PATH --tgt YOUR_DROPBOX_PATH`
 
 After executing the command, you will see `YOUR_DROPBOX_PATH/YOUR_FILE` in dropbox.
 
 ### Recursive upload files in directory
 
-`python main..py --src YOUR_DIRECTORY_PATH --tgt YOUR_DROPBOX_PATH`
+`python main.py --src YOUR_DIRECTORY_PATH --tgt YOUR_DROPBOX_PATH`
 
 After executingthe command, you will see a directory `YOUR_DIRECTORY_NAME` created under `YOUR_DROPBOX_PATH`, and all the files locally exist in `YOUR_DIRECTORY_PATH
